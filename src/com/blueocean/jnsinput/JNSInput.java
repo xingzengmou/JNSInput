@@ -1,5 +1,5 @@
 package com.blueocean.jnsinput;
-  
+    
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.DataInputStream;
@@ -57,7 +57,7 @@ class JNSInput {
 				pw = new PrintWriter(socket.getOutputStream());
 				System.err.println("connect address = " + socket.getInetAddress());
 				System.err.println("socket.isclosed = " + socket.isConnected());
-				while (socket.isConnected()) {
+				while (true) {
 					try {
 						System.err.println("is.readline");
 						String line = is.readLine();
@@ -65,14 +65,13 @@ class JNSInput {
 						if (line != null) {
 							processData(line);
 						}
-						pw.println("got");
+						pw.println("got server version 1.4");
 						pw.flush();
-						Thread.sleep(500);
+						//Thread.sleep(500);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
-				socket.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
